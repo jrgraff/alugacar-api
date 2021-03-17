@@ -6,8 +6,7 @@ interface IRequest {
 }
 
 class CreateCategoryUseCase {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private categoriesRepository: CategoriesRepository) { }
+  constructor(private categoriesRepository: CategoriesRepository) {}
 
   execute({ name, description }: IRequest): void {
     const categoryAlreadyExists = this.categoriesRepository.findByName(name);

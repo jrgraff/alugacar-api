@@ -6,8 +6,7 @@ interface IRequest {
 }
 
 class CreateSpecificationUseCase {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private specificationRepository: ISpecificationsRepository) { }
+  constructor(private specificationRepository: ISpecificationsRepository) {}
 
   execute({ name, description }: IRequest): void {
     const specificationAlreadyExists = this.specificationRepository.findByName(
