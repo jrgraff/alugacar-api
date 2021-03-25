@@ -8,6 +8,7 @@ services:
   rentx-api:
     build: .
     container_name: rentx-api
+    restart: always
     environment:
       - POSTGRES_HOST=rentx-postgres
     depends_on:
