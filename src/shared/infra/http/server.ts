@@ -4,14 +4,14 @@ import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
 
 import { AppError } from "@shared/errors/AppErrors";
-import createConnection from "@shared/infra/typeorm";
+import { createDbConnection } from "@shared/infra/typeorm";
 
 import swaggerFile from "../../../swagger.json";
 import { router } from "./routes";
 
 import "@shared/container";
 
-createConnection();
+createDbConnection();
 const app = express();
 app.use(express.json());
 

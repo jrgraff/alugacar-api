@@ -1,11 +1,18 @@
-import { Connection, createConnection, getConnectionOptions } from "typeorm";
+import { createConnection, getConnectionOptions } from "typeorm";
 
-export default async (host = "database"): Promise<Connection> => {
+import { env } from "@shared/env";
+
+async function createDbConnection(name = "default") {
   const defaultOptions = await getConnectionOptions();
 
-  return createConnection(
-    Object.assign(defaultOptions, {
-      host,
-    })
-  );
-};
+  const database = env.isTest ? "rentx_tests" : defaultOptions.database;
+  const options = Object.assign(defaultOptions, { name, database });
+
+  const connection = await createConnection(options);
+
+  if (env.isDev) console.log("Database connected");
+
+  return connection;
+}
+
+export { createDbConnection };
