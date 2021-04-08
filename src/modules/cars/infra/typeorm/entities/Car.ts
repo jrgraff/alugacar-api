@@ -39,18 +39,18 @@ class Car {
   @Column()
   brand: string;
 
+  @Column()
+  category_id: string;
+
   @ManyToOne(() => Category)
   @JoinColumn({ name: "category_id" })
   category: Category;
 
-  @Column()
-  category_id: string;
-
   @ManyToMany(() => Specification)
   @JoinTable({
     name: "specifications_cars",
-    joinColumns: [{ name: "car_id" }],
-    inverseJoinColumns: [{ name: "specification_id" }],
+    joinColumn: { name: "car_id" },
+    inverseJoinColumn: { name: "specification_id" },
   })
   specifications: Specification[];
 
