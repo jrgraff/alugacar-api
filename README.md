@@ -55,3 +55,4 @@ Deve ser possível cadastrar um aluguel;<br>
 O aluguel deve ter duração mínima de 24 horas;<br>
 Não deve ser possível cadastrar um novo aluguel caso ja exista um aberto apara o mesmo usuário;<br>
 Não deve ser possível cadastrar um novo aluguel caso ja exista um aberto apara o mesmo carro;<br>
+O usuário deve estar logado na aplicação;<br>
