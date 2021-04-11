@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add envalid
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add dayjs
 
 PATH: 
   C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Oracle\Application\bin;C:\Users\jacks\Desktop\oracle\bin;C:\ProgramData\Oracle\Java\javapath;C:\Python38\Scripts\;C:\Python38\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\dotnet\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\jacks\Anaconda3;C:\Users\jacks\Anaconda3\Library\mingw-w64\bin;C:\Users\jacks\Anaconda3\Library\usr\bin;C:\Users\jacks\Anaconda3\Library\bin;C:\Users\jacks\Anaconda3\Scripts;C:\Users\jacks\AppData\Local\Microsoft\WindowsApps;C:\Users\jacks\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\jacks\AppData\Local\Yarn\bin;C:\Users\jacks\AppData\Roaming\npm;C:\Users\jacks\AppData\Local\GitHubDesktop\bin;
@@ -31,6 +31,7 @@ npm manifest:
     "dependencies": {
       "bcryptjs": "^2.4.3",
       "csv-parse": "^4.15.3",
+      "envalid": "^7.1.0",
       "express": "^4.17.1",
       "express-async-errors": "^3.1.1",
       "jsonwebtoken": "^8.5.1",
@@ -1914,6 +1915,11 @@ Lockfile:
     integrity sha512-yjNnPr315/FjS4zIsUxYguYUPP2e1NK4d7E7ZOLiyYCcbFBiTMyID+2wvm2w6+pZ/odMA7cRkjhsPbltwBOrLg==
     dependencies:
       ansi-colors "^4.1.1"
+  
+  envalid@^7.1.0:
+    version "7.1.0"
+    resolved "https://registry.yarnpkg.com/envalid/-/envalid-7.1.0.tgz#fccc499abb257e3992d73b02d014c867a85e2a69"
+    integrity sha512-C5rtCxfj+ozW5q79fBYKcBEf0KSNklKwZudjCzXy9ANT8Pz1MKxPBn6unZnYXXy6e+cqVgnEURQeXmdueG9/kA==
   
   error-ex@^1.2.0, error-ex@^1.3.1:
     version "1.3.2"
