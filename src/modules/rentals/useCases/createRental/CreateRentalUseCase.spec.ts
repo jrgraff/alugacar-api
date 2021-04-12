@@ -29,9 +29,19 @@ describe("Create Rental", () => {
   });
 
   it("should be able to create a new rental", async () => {
+    const car = await carsRepositoryInMemory.create({
+      name: "test1",
+      description: "car_test1",
+      daily_rate: 100,
+      license_plate: "test1",
+      fine_amount: 40,
+      category_id: "1234",
+      brand: "brand",
+    });
+
     const rental = await createRentalUseCase.execute({
       user_id: "teste1",
-      car_id: "teste1",
+      car_id: car.id,
       expected_return_date: dayAdd,
     });
 
@@ -39,45 +49,47 @@ describe("Create Rental", () => {
     expect(rental).toHaveProperty("start_date");
   });
 
-  it("should not be able to create a new rental if the user have another one open", () => {
-    expect(async () => {
-      await createRentalUseCase.execute({
-        user_id: "teste2",
-        car_id: "teste2",
-        expected_return_date: dayAdd,
-      });
+  it("should not be able to create a new rental if the user have another one open", async () => {
+    await rentalsRepositoryinMemory.create({
+      car_id: "teste2",
+      expected_return_date: dayAdd,
+      user_id: "teste2",
+    });
 
-      await createRentalUseCase.execute({
+    await expect(
+      createRentalUseCase.execute({
         user_id: "teste2",
-        car_id: "teste3",
+        car_id: "teste_",
         expected_return_date: dayAdd,
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toEqual(
+      new AppError("There is a rental in progress for this user!")
+    );
   });
 
   it("should not be able to create a new rental if the car have another one open", async () => {
-    expect(async () => {
-      await createRentalUseCase.execute({
-        user_id: "teste4",
-        car_id: "teste4",
-        expected_return_date: dayAdd,
-      });
+    await rentalsRepositoryinMemory.create({
+      car_id: "teste3",
+      expected_return_date: dayAdd,
+      user_id: "teste3",
+    });
 
-      await createRentalUseCase.execute({
-        user_id: "teste5",
-        car_id: "teste4",
+    expect(
+      createRentalUseCase.execute({
+        user_id: "teste_",
+        car_id: "teste3",
         expected_return_date: dayAdd,
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toEqual(new AppError("Car is unavailable!"));
   });
 
   it("should not be able to create a new rental with invalid return time", async () => {
-    expect(async () => {
-      await createRentalUseCase.execute({
+    await expect(
+      createRentalUseCase.execute({
         user_id: "teste6",
         car_id: "teste6",
         expected_return_date: dayjs().toDate(),
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toEqual(new AppError("Invalid return time!"));
   });
 });
