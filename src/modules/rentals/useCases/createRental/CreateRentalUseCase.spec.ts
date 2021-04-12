@@ -30,20 +30,17 @@ describe("Create Rental", () => {
       expected_return_date: dayAdd,
     });
 
-    console.log(rental);
     expect(rental).toHaveProperty("id");
     expect(rental).toHaveProperty("start_date");
   });
 
   it("should not be able to create a new rental if the user have another one open", () => {
     expect(async () => {
-      const rental = await createRentalUseCase.execute({
+      await createRentalUseCase.execute({
         user_id: "teste2",
         car_id: "teste2",
         expected_return_date: dayAdd,
       });
-
-      console.log(rental);
 
       await createRentalUseCase.execute({
         user_id: "teste2",
