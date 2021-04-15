@@ -28,7 +28,6 @@ O usúario não precisa estar logado no sistema;<br>
 **RF**<br>
 Deve ser possível cadastrar uma especificaão para um carro;<br>
 
-
 **RN**<br>
 Não deve ser possível cadastrar uma especificão em um carro não cadastrado;<br>
 Não deve ser possível cadastrar uma especificaão já existente para o mesmo carro;<br>
@@ -71,3 +70,15 @@ Ao realizar a devolução, deverá ser calculado o total do aluguel;<br>
 Caso a data de devolução seja superior a data prevista de entrega, deverá ser cobrado multa proporcional aos dias de atraso;<br>
 Caso haja multa, deverá ser somada ao total do aluguel;<br>
 O usuário deve estar logado na aplicação;<br>
+
+## Recuperar Senha
+
+**RF**<br>
+Deve ser possível o usuário recuperar a senha do email informado;<br>
+O usuário deve receber um email com o passo a passo para a recuperação da senha;<br>
+O usuário deve conseguir inserir uma nova senha;<br>
+
+**RN**<br>
+O usuário precisa informar uma nova senha;<br>
+O link enviado para a recuperação deve expirar em 3 horas;<br>
+
