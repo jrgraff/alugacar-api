@@ -14,7 +14,7 @@ class ResetUserPasswordController {
 
     await resetUserPasswordUseCase.execute({ token: String(token), password });
 
-    return response.send();
+    return response.status(204).send();
   }
 }
 

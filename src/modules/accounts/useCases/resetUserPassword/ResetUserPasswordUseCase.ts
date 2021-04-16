@@ -42,10 +42,13 @@ class ResetUserPasswordUseCase {
 
     const user = await this.usersRepository.findById(userToken.user_id);
 
+    if (!user) {
+      throw new AppError("user_does_not_exists");
+    }
+
     user.password = await hash(password, 8);
 
     await this.usersRepository.create(user);
-
     await this.usersTokensRepository.deleteById(userToken.id);
   }
 }
