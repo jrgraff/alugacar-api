@@ -1,12 +1,12 @@
 import "reflect-metadata";
-import express, { Request, Response } from "express";
+import express from "express";
 import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
 
-import { AppError } from "@shared/errors/AppErrors";
 import { createDbConnection } from "@shared/infra/typeorm";
 
 import swaggerFile from "../../../swagger.json";
+import { generalErrorHandler } from "./middlewares/generalErrorHandler";
 import { router } from "./routes";
 
 import "@shared/container";
@@ -19,17 +19,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use(router);
 
-app.use((err: Error, request: Request, response: Response) => {
-  if (err instanceof AppError) {
-    return response.status(err.statusCode).json({
-      message: err.message,
-    });
-  }
-
-  return response.status(500).json({
-    status: "error",
-    message: `Internal server error - ${err.message}`,
-  });
-});
+app.use(generalErrorHandler);
 
 export { app };

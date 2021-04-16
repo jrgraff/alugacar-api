@@ -3,6 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
 import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
+import { MIN_RENT_HOURS } from "@shared/constants";
 import { IDateProvider } from "@shared/container/providers/dateProvider/IDateProvider";
 import { AppError } from "@shared/errors/AppErrors";
 
@@ -33,7 +34,7 @@ class CreateRentalUseCase {
     );
 
     if (carUnavailable) {
-      throw new AppError("Car is unavailable!");
+      throw new AppError("car_rent_in_progress");
     }
 
     const rentalOpenToUser = await this.rentalsRepository.findOpenRentalByUser(
@@ -41,7 +42,7 @@ class CreateRentalUseCase {
     );
 
     if (rentalOpenToUser) {
-      throw new AppError("There is a rental in progress for this user!");
+      throw new AppError("user_rent_in_progress");
     }
 
     const dateNow = this.dateProvider.dateNow();
@@ -50,9 +51,8 @@ class CreateRentalUseCase {
       expected_return_date
     );
 
-    const oneDay = 24;
-    if (compare < oneDay) {
-      throw new AppError("Invalid return time!");
+    if (compare < MIN_RENT_HOURS) {
+      throw new AppError("invalid_return_rent_date");
     }
 
     const rental = await this.rentalsRepository.create({

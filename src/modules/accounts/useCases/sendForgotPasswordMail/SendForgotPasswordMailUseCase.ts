@@ -34,7 +34,7 @@ class SendForgotPasswordMailUseCase {
     );
 
     if (!user) {
-      throw new AppError("User does not exists!");
+      throw new AppError("user_does_not_exists");
     }
 
     const token = uuidV4();
