@@ -16,8 +16,8 @@ describe("Create Category", () => {
 
   it("shoud be able to create a new category", async () => {
     const category = {
-      name: "Category Test",
-      description: "Category description Test",
+      name: "test_category",
+      description: "test_category_description",
     };
 
     await createCategoryUseCase.execute({
@@ -32,10 +32,10 @@ describe("Create Category", () => {
     expect(categoryCreated).toHaveProperty("id");
   });
 
-  it("shoud be able to create a new category", async () => {
+  it("shoud not be able to create a new category with the same name", async () => {
     const category = {
-      name: "Category Test",
-      description: "Category description Test",
+      name: "test_category",
+      description: "test_category_description",
     };
 
     await createCategoryUseCase.execute({
@@ -48,6 +48,6 @@ describe("Create Category", () => {
         name: category.name,
         description: category.description,
       })
-    ).rejects.toEqual(new AppError("Category already exists!"));
+    ).rejects.toEqual(new AppError("category_already_registered"));
   });
 });

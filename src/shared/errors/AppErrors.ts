@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 
-import { errorsMessages } from "./enMessages";
+import { errorsMessages } from "./en_messages";
 
 class AppError {
   public readonly message: string;
